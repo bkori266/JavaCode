@@ -46,9 +46,9 @@ public class StreamAPICode {
 				
 		System.out.println("8) Even and odd groups"+number.stream().collect(Collectors.partitioningBy(a->a%2==0))); 
 		
+		System.out.println("9) findAny,anyMatch,allMatch: ");
 		
-		
-		
+		System.out.println(number.stream().filter(a->a%2!=0).findAny().get());
 	}
 	
 	
