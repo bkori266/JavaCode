@@ -3,6 +3,7 @@ package java8;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,8 @@ public class StreamAPICode {
 
 	public static void main(String[] args) {
 		List<Integer> number=Arrays.asList(1,9,8,11,2,3,4,5,6,7,87,1,3,2,11,9);
-		String name="Bipin kori manikchand";
-		List<String> nameList=Arrays.asList("bipin","kori","bipin","kori","khan");
+		String name="BipinkorimanikchandbB";
+		List<String> nameList=Arrays.asList("bipin","koriiii","bipin","manikchand","kori","khan");
 	
 		
 		Collection<Integer> setValues=number.stream()
@@ -33,10 +34,10 @@ public class StreamAPICode {
 		
 		Map<Character, Long> charCount=name.chars()
 									.mapToObj(a->(char)a)
-									.collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+									.collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()));
 		System.out.println("5) Char count of name: "+charCount);
 		
-		Map<String, Long> charCountWord=nameList.stream().collect(Collectors.groupingBy(a->a,Collectors.counting()));
+		Map<String, Long> charCountWord=nameList.stream().collect(Collectors.groupingBy(a->a,LinkedHashMap::new,Collectors.counting()));
 		System.out.println("6) COunt word form List: "+charCountWord);
 		
 		List<Integer> dublicateNumbers=number.stream().
@@ -49,9 +50,30 @@ public class StreamAPICode {
 		System.out.println("9) findAny,anyMatch,allMatch: ");
 		
 		System.out.println(number.stream().filter(a->a%2!=0).findAny().get());
+		
+		System.out.println("10) Longest string from list");
+		
+		
+		System.out.println(nameList.stream().max((a,b)->a.length()-b.length()).get());
+	
+		System.out.println("11) FIndinf first non repeat char from string");
+		
+		Character nonRepeatChar=name.chars().mapToObj(c->(char)c)
+		.collect(Collectors.groupingBy(
+		        Function.identity(),
+		        LinkedHashMap::new,
+		        Collectors.counting()))
+				.entrySet().stream()
+				.filter(a->a.getValue()==1)
+				.map(a->a.getKey())
+				.findFirst().orElse(null);
+		
+		System.out.println(nonRepeatChar);
+		
+		
+				
+		
 	}
-	
-	
 	
 
 }
