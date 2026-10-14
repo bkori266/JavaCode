@@ -68,7 +68,7 @@ public class StreamAPICode {
 				.map(a->a.getKey())
 				.findFirst().orElse(null);
 		
-		System.out.println(nonRepeatChar);
+		System.out.println(nonRepeatChar);	
 		
 		
 				

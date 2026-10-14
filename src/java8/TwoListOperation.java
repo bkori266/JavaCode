@@ -12,7 +12,7 @@ public class TwoListOperation {
 		List<Integer> num1=Arrays.asList(1,2,3,4,5,6);
 		List<Integer> num2=num1;
 	
-		List<Integer> num1_num2=Stream.of(num1,num2).flatMap(List::stream).collect(Collectors.toList());
+		List<Integer> num1_num2=Stream.of(num1,num2).flatMap(List::stream).distinct().collect(Collectors.toList());
 		System.out.println(num1_num2);
 		
 		Optional<Integer> ans=null;
